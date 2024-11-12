@@ -21,7 +21,19 @@ CREATE TABLE Medicamentos (
 -- Tabla para Fases
 CREATE TABLE Fases (
     id_fase INT PRIMARY KEY AUTO_INCREMENT,
-    fase VARCHAR(50) NOT NULL
+    fase VARCHAR(50) NOT NULL,
+    id_alimento INT NOT NULL,
+    FOREIGN KEY (id_alimento) REFERENCES Alimentos(id_alimento)
+);
+
+-- Tabla para Dieta
+CREATE TABLE DetalleDieta (
+    id_detalle int PRIMARY KEY AUTO_INCREMENT,
+    id_fase int NOT NULL,
+    id_alimento int NOT NULL,
+    CantidadRequerida decimal(10,2) NOT NULL,
+    FOREIGN KEY (id_fase) REFERENCES Fases(id_fase),
+    FOREIGN KEY (id_alimento) REFERENCES Alimentos(id_alimento)
 );
 
 -- Tabla para Animales
@@ -73,3 +85,32 @@ CREATE TABLE VentaCam (
     preciototal DECIMAL(10,2) GENERATED ALWAYS AS (preciodes * cantidad) STORED,
     FOREIGN KEY (id_camada) REFERENCES Camadas(id_camada)
 );
+
+-- TRIGGERS
+
+--COMPRA DE ALIMENTOS Y SE AÑADA A TABLA DE ALIMENTOS
+DELIMITER $$
+CREATE TRIGGER actualizar_cantidad_alimento 
+AFTER INSERT ON CompraAlim
+FOR EACH ROW
+BEGIN
+    UPDATE Alimentos
+    SET cantidad = cantidad + NEW.cantidadcompra
+    WHERE id_alimento = NEW.id_alimento;
+END$$
+
+DELIMITER ;
+
+
+--COMPRA DE MEDICAMENTOS Y SE AÑADA A TABLA DE ALIMENTOS
+DELIMITER $$
+CREATE TRIGGER actualizar_cantidad_medicamento
+AFTER INSERT ON CompraMedi
+FOR EACH ROW
+BEGIN
+    UPDATE Medicamentos
+    SET cantidad = cantidad + NEW.cantidadcompra
+    WHERE id_medicamento = NEW.id_medicamento;
+END$$
+
+DELIMITER ;
