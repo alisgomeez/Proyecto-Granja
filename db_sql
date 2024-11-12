@@ -26,7 +26,7 @@ CREATE TABLE Fases (
 
 -- Tabla para Animales
 CREATE TABLE Animales (
-    Id_animal INT PRIMARY KEY AUTO_INCREMENT,
+    arete INT PRIMARY KEY AUTO_INCREMENT,
     Id_corral INT,
     FOREIGN KEY (Id_corral) REFERENCES Corrales(Id_corral)
 );
@@ -56,10 +56,13 @@ CREATE TABLE CompraMedi (
 -- Tabla para Camadas
 CREATE TABLE Camadas (
     id_camada INT PRIMARY KEY AUTO_INCREMENT,
+    arete INT NOT NULL,
     id_corral INT NOT NULL,
     cantidad INT NOT NULL,
     fechanaci DATE NOT NULL,
     FOREIGN KEY (id_corral) REFERENCES Corrales(Id_corral)
+    FOREIGN KEY (arete) REFERENCES Animales(arete)
+
 );
 
 -- Tabla para Venta de Camadas
