@@ -1,0 +1,73 @@
+-- Tabla para Corrales
+CREATE TABLE Corrales (
+    Id_corral INT PRIMARY KEY AUTO_INCREMENT,
+    corral VARCHAR(50) NOT NULL
+);
+
+-- Tabla para Alimentos
+CREATE TABLE Alimentos (
+    id_alimento INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    cantidad INT NOT NULL
+);
+
+-- Tabla para Medicamentos
+CREATE TABLE Medicamentos (
+    id_medicamento INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    cantidad INT NOT NULL
+);
+
+-- Tabla para Fases
+CREATE TABLE Fases (
+    id_fase INT PRIMARY KEY AUTO_INCREMENT,
+    fase VARCHAR(50) NOT NULL
+);
+
+-- Tabla para Animales
+CREATE TABLE Animales (
+    Id_animal INT PRIMARY KEY AUTO_INCREMENT,
+    Id_corral INT,
+    FOREIGN KEY (Id_corral) REFERENCES Corrales(Id_corral)
+);
+
+-- Tabla para Compra de Alimentos
+CREATE TABLE CompraAlim (
+    id_compralim INT PRIMARY KEY AUTO_INCREMENT,
+    id_alimento INT NOT NULL,
+    cantidadcompra INT NOT NULL,
+    preciouni DECIMAL(10,2) NOT NULL,
+    preciototal DECIMAL(10,2) GENERATED ALWAYS AS (cantidadcompra * preciouni) STORED,
+    fecha_compra DATE NOT NULL,
+    FOREIGN KEY (id_alimento) REFERENCES Alimentos(id_alimento)
+);
+
+-- Tabla para Compra de Medicamentos
+CREATE TABLE CompraMedi (
+    id_compramedi INT PRIMARY KEY AUTO_INCREMENT,
+    id_medicamento INT NOT NULL,
+    cantidadcompra INT NOT NULL,
+    preciouni DECIMAL(10,2) NOT NULL,
+    preciototal DECIMAL(10,2) GENERATED ALWAYS AS (cantidadcompra * preciouni) STORED,
+    fecha_compra DATE NOT NULL,
+    FOREIGN KEY (id_medicamento) REFERENCES Medicamentos(id_medicamento)
+);
+
+-- Tabla para Camadas
+CREATE TABLE Camadas (
+    id_camada INT PRIMARY KEY AUTO_INCREMENT,
+    id_corral INT NOT NULL,
+    cantidad INT NOT NULL,
+    fechanaci DATE NOT NULL,
+    FOREIGN KEY (id_corral) REFERENCES Corrales(Id_corral)
+);
+
+-- Tabla para Venta de Camadas
+CREATE TABLE VentaCam (
+    id_venta INT PRIMARY KEY AUTO_INCREMENT,
+    id_camada INT NOT NULL,
+    preciodes DECIMAL(10,2) NOT NULL,
+    cantidad INT,  -- Cantidad de la camada al momento de la venta
+    preciototal DECIMAL(10,2) GENERATED ALWAYS AS (preciodes * cantidad) STORED,
+    FOREIGN KEY (id_camada) REFERENCES Camadas(id_camada)
+);

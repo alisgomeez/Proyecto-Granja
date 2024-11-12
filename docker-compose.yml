@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  www:
+    container_name: GranjaProy
+    image: php:8.0-apache
+    depends_on:
+      - database
+    volumes:
+      - ./www:/var/www/html/
+    ports:
+      - "90:80"
+
+  database:
+    container_name: database
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Granja
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: alis
+    ports:
+      - "3310:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  myadmin:  
+    container_name: myadmin
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_USER: admin
+      PMA_PASSWORD: alis
+    ports:
+      - "8090:80"
+    restart: always
+    depends_on:
+      - database
+
+volumes:
+  mysql_data:
