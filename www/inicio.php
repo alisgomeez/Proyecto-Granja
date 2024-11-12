@@ -16,7 +16,7 @@
         <div class="col-md-4">
             <div class="btn-container">
                 <a href="animales.php" class="btn btn-lg btn-secondary btn-white-border">
-                    <img src="../images/ganadoic.png" alt="Ganado" class="img-fluid rounded" style="width: 220px;">
+                    <img src="../images/puer1.jpg" alt="Ganado" class="img-fluid rounded" style="width: 170px;">
                 </a>
                 <div class="btn-name">Animales</div>
             </div>
@@ -24,7 +24,7 @@
         <div class="col-md-4">
             <div class="btn-container">
                 <a href="alimentar.php" class="btn btn-lg btn-secondary btn-white-border">
-                    <img src="../images/alimentoic.png" alt="Alimentar" class="img-fluid rounded" style="width: 220px;">
+                    <img src="../images/alimentoic.png" alt="Alimentar" class="img-fluid rounded" style="width: 170px;">
                 </a>
                 <div class="btn-name">Alimentar Y Vacunar </Cap> Ganado</div>
             </div>
@@ -35,7 +35,7 @@
         <div class="col-md-4">
                 <div class="btn-container">
                     <a href="almacen.php" class="btn btn-lg btn-secondary btn-white-border">
-                        <img src="../images/almacenic.png" alt="Almacén" class="img-fluid rounded" style="width: 220px;">
+                        <img src="../images/almacenic.png" alt="Almacén" class="img-fluid rounded" style="width: 170px;">
                     </a>
                     <div class="btn-name">Almacén</div>
                 </div>
@@ -43,7 +43,7 @@
         <div class="col-md-4">
             <div class="btn-container">
                 <a href="caja.php" class="btn btn-lg btn-secondary btn-white-border">
-                    <img src="../images/cajaic.png" alt="Caja" class="img-fluid rounded" style="width: 220px;">
+                    <img src="../images/cajaic.png" alt="Caja" class="img-fluid rounded" style="width: 170px;">
                 </a>
                 <div class="btn-name">Caja</div>
             </div>
@@ -60,7 +60,7 @@
     }
 
     .btn-container {
-        margin-bottom: 15px;
+        margin-bottom: 0px;
     }
 </style>
 
