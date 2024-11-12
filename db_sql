@@ -62,7 +62,6 @@ CREATE TABLE Camadas (
     fechanaci DATE NOT NULL,
     FOREIGN KEY (id_corral) REFERENCES Corrales(Id_corral)
     FOREIGN KEY (arete) REFERENCES Animales(arete)
-
 );
 
 -- Tabla para Venta de Camadas
