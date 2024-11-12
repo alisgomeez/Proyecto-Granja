@@ -16,7 +16,7 @@
         <div class="col-md-4">
             <div class="btn-container">
                 <a href="puerinfo.php" class="btn btn-lg btn-secondary btn-white-border">
-                    <img src="../images/lotes.jpg" alt="Lotes" class="img-fluid rounded">
+                    <img src="../images/puer.avif" alt="puerquito" class="img-fluid rounded">
                 </a>
                 <div class="btn-name">Mostrar Puercas</div>
             </div>
@@ -24,7 +24,7 @@
         <div class="col-md-4">
             <div class="btn-container">
                 <a href="camadasinfo.php" class="btn btn-lg btn-secondary btn-white-border">
-                    <img src="../images/lotes.jpg" alt="Lotes" class="img-fluid rounded">
+                    <img src="../images/varios.jpeg" alt="camada" class="img-fluid rounded">
                 </a>
                 <div class="btn-name">Mostrar Camadas</div>
             </div>
