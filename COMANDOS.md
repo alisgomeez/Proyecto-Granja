@@ -4,7 +4,7 @@ Ctrl+Shift+V
 solo es para que se vea bonito y puedas copiar mejor los comandos
 ## 1. Clonar
 ```
-git clone git@github.com:alisgomeez/Proyecto-Granja.git
+git clone https://github.com/alisgomeez/Proyecto-Granja.git
 ```
 ## 2. Ver rama 
 ```
