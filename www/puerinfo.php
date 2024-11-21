@@ -13,7 +13,7 @@ include("includes/header.php");
 ?>
 
 <div class="container mt-5">
-    <h2>Listado de Puercas</h2>
+    <h2>Listado de Madres</h2>
     
     <?php
     $servername = "database";

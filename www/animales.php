@@ -18,7 +18,7 @@
                 <a href="puerinfo.php" class="btn btn-lg btn-secondary btn-white-border">
                     <img src="../images/puer.avif" alt="puerquito" class="img-fluid rounded">
                 </a>
-                <div class="btn-name">Mostrar Puercas</div>
+                <div class="btn-name">Mostrar Madres</div>
             </div>
         </div>
         <div class="col-md-4">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="row justify-content-center d-flex align-items-center">
-        <!-- Dejar por si se agrega "VENDER PUERCA" --> 
+        <!-- Dejar por si se agrega "VENDER madre" --> 
         <!-- <div class="col-md-4">
             <div class="btn-container">
                 <a href="comprarlote.php" class="btn btn-sm btn-secondary btn-white-border">
