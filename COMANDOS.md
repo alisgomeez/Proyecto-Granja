@@ -10,6 +10,12 @@ git clone https://github.com/alisgomeez/Proyecto-Granja.git
 ```
 git remote -v
 ```
+### Si no estás en ese cambialo con
+```
+git remote set-url origin https://github.com/alisgomeez/Proyecto-Granja.git
+```
+y vuelves a revisar con el del paso 2
+
 ## 3. Ver rama 
 ```
 git branch 
