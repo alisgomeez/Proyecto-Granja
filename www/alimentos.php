@@ -26,14 +26,14 @@ include("includes/header.php");
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
     }
-    $sql = "SELECT nombre, cantidad FROM Alimentos";
+    $sql = "SELECT nombre, total FROM Alimentos";
     $result = $conn->query($sql);
     ?>
 <table class="table">
         <thead>
             <tr>
                 <th>Alimento</th>
-                <th>Cantidad</th>
+                <th>Cantidad en kilogramos</th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +43,7 @@ include("includes/header.php");
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["nombre"] . "</td>";
-                    echo "<td>" . $row["cantidad"] . "</td>";
+                    echo "<td>" . $row["total"] . "</td>";
                     echo "</tr>";
                 }
             } else {
