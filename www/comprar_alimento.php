@@ -71,7 +71,7 @@ include("includes/header.php");
                 </div>
 
                 <div class="form-group">
-                    <label for="cantidadCompra">Cantidad a Comprar:</label>
+                    <label for="cantidadCompra">Cantidad de bultos:</label>
                     <input type="number" class="form-control" id="cantidadCompra" name="cantidadCompra" required>
                 </div>
 
