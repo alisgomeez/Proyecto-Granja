@@ -32,15 +32,14 @@
     </div>
 
     <div class="row justify-content-center d-flex align-items-center">
-        <!-- Dejar por si se agrega "VENDER madre" --> 
-        <!-- <div class="col-md-4">
+        <div class="col-md-4">
             <div class="btn-container">
-                <a href="comprarlote.php" class="btn btn-sm btn-secondary btn-white-border">
-                    <img src="images/comprar.jpg" alt="Comprar Lote" class="img-fluid rounded">
+                <a href="agregarcam.php" class="btn btn-sm btn-secondary btn-white-border">
+                    <img src="images/agregar.png" alt="Agregar Camada" class="img-fluid rounded">
                 </a>
-                <div class="btn-name">Comprar Lote</div>
+                <div class="btn-name">Agregar Camada</div>
             </div>
-        </div>  -->
+        </div>  
 
         <div class="col-md-4">
             <div class="btn-container">
