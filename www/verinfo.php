@@ -12,9 +12,7 @@ include("includes/header.php");
 </head>
 <body>
 
-
 <?php
-// se obtiene el ID de la camada desde la pagina 
 $id_camada = isset($_GET['id']) ? $_GET['id'] : 0;
 
 if ($id_camada == 0) {
@@ -33,7 +31,18 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// consulta en la base para la camada seleccionada
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editar_fase"])) {
+    $nueva_fase = $_POST["nueva_fase"];
+    $sql_update = "UPDATE Camadas SET id_fase = $nueva_fase WHERE id_camada = $id_camada";
+
+    if ($conn->query($sql_update) === TRUE) {
+        echo "<div class='alert alert-success text-center'>Fase actualizada correctamente.</div>";
+    } else {
+        echo "<div class='alert alert-danger text-center'>Error al actualizar la fase: " . $conn->error . "</div>";
+    }
+}
+
+// Consulta para obtener información de la camada
 $sql = "SELECT 
             id_camada,
             arete,
@@ -43,7 +52,9 @@ $sql = "SELECT
             TIMESTAMPDIFF(MONTH, fechanaci, CURDATE()) AS meses,
             TIMESTAMPDIFF(DAY, ADDDATE(fechanaci, INTERVAL TIMESTAMPDIFF(MONTH, fechanaci, CURDATE()) MONTH), CURDATE()) AS dias
         FROM Camadas
-        WHERE id_camada = $id_camada";$result = $conn->query($sql);
+        WHERE id_camada = $id_camada";
+
+$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
@@ -53,7 +64,11 @@ if ($result->num_rows > 0) {
     $sql_fase = "SELECT fase FROM Fases WHERE id_fase = " . $row['id_fase'];
     $fase_result = $conn->query($sql_fase);
     $fase_row = $fase_result->fetch_assoc();
-    $nombre_fase = $fase_row['fase'];    
+    $nombre_fase = $fase_row['fase'];
+
+    // Obtener lista de fases para el menú desplegable
+    $sql_fases = "SELECT id_fase, fase FROM Fases";
+    $fases_result = $conn->query($sql_fases);
     ?>
 
     <div class="container mt-5">
@@ -73,20 +88,36 @@ if ($result->num_rows > 0) {
             </tr>
             <tr>
                 <th>Edad</th>
-                <td><?php echo $edad_meses . " mes y " . $edad_dias . " días"; ?></td>
+                <td><?php echo $edad_meses . " mes(es) y " . $edad_dias . " día(s)"; ?></td>
             </tr>
             <tr>
                 <th>Fase</th>
                 <td><?php echo $nombre_fase; ?></td>
             </tr>
         </table>
+        <h3>Actualizar</h3>
+        <form action="" method="post" class="mt-3">
+            <div class="mb-3">
+                <label for="nueva_fase" class="form-label">Cambiar Fase:</label>
+                <select name="nueva_fase" id="nueva_fase" class="form-select" required>
+                    <option value="" disabled selected>Selecciona una nueva fase</option>
+                    <?php
+                    if ($fases_result->num_rows > 0) {
+                        while ($fase = $fases_result->fetch_assoc()) {
+                            echo "<option value='" . $fase["id_fase"] . "'>" . $fase["fase"] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+            <button type="submit" name="editar_fase" class="btn btn-primary">Actualizar Fase</button>
+        </form>
     </div>
     <?php
 } else {
     echo "<div class='container mt-5'><p>No se encontró información para la camada seleccionada.</p></div>";
 }
 
-// Cerrar conexión
 $conn->close();
 ?>
 
