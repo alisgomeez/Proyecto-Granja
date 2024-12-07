@@ -54,9 +54,20 @@ include("includes/header.php");
         </tbody>
         </tbody>
     </table>
-    <form action="comprar_alimento.php" method="post">
-    <button type="submit" class="btn btn-primary">Comprar Alimento</button>
-  </form>
+    <!-- Botones alineados en una fila -->
+    <div class="row mt-4">
+        <div class="col-12 col-md-6 mb-2">
+            <form action="comprar_alimento.php" method="post">
+                <button type="submit" class="btn btn-primary w-100">Comprar Alimento</button>
+            </form>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <form action="alimentar.php" method="post">
+                <button type="submit" class="btn btn-success w-100">Alimentar Camada</button>
+            </form>
+        </div>
+    </div>
+
 </div>
 
 <!-- Bootstrap Scripts -->
