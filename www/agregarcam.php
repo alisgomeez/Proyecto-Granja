@@ -8,46 +8,54 @@ include("includes/header.php");
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>Añadir Camada</title>
-
 </head>
 <body>
 
 <?php
-include("includes/conexion.php");
+$servername = "database";
+$username = "root";
+$password = "root";
+$dbname = "Granja";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+$sql_aretes = "SELECT arete FROM Animales";
+$aretes_result = $conn->query($sql_aretes);
+
+$sql_corrales = "SELECT id_corral, corral FROM Corrales";
+$corrales_result = $conn->query($sql_corrales);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $arete = $_POST["arete"];
+    $id_corral = $_POST["id_corral"];
+    $cantidad = $_POST["cantidad"];
+    $fechanaci = $_POST["fechanaci"];
+    $id_fase = 2;  // Fase por defecto
+
+    // Insertar la nueva camada en la base de datos
+    $sql_insert = "INSERT INTO Camadas (arete, id_corral, cantidad, fechanaci, id_fase)
+                   VALUES ('$arete', '$id_corral', '$cantidad', '$fechanaci', '$id_fase')";
+
+    if ($conn->query($sql_insert) === TRUE) {
+        echo "<div class='alert alert-success' role='alert'>Camada agregada exitosamente.</div>";
+    } else {
+        echo "<div class='alert alert-danger' role='alert'>Error al agregar la camada: " . $conn->error . "</div>";
+    }
+}
+$conn->close();
 ?>
 
 <div class="container mt-5">
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
-            <h2 class="text-center mb-0">Agregar Camada</h2>
+            <h2 class="text-center mb-0">Añadir Camada</h2>
         </div>
         <div class="card-body">
-        <?php
-            $sql_aretes = "SELECT arete FROM Animales";
-            $aretes_result = $conn->query($sql_aretes);
-
-            $sql_corrales = "SELECT id_corral, corral FROM Corrales";
-            $corrales_result = $conn->query($sql_corrales);
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $arete = $_POST["arete"];
-                $id_corral = $_POST["id_corral"];
-                $cantidad = $_POST["cantidad"];
-                $fechanaci = $_POST["fechanaci"];
-                $id_fase = 2;  // Fase por defecto
-
-                // Insertar la nueva camada en la base de datos
-                $sql_insert = "INSERT INTO Camadas (arete, id_corral, cantidad, fechanaci, id_fase)
-                            VALUES ('$arete', '$id_corral', '$cantidad', '$fechanaci', '$id_fase')";
-
-                if ($conn->query($sql_insert) === TRUE) {
-                    echo "<div class='alert alert-success' role='alert'>Camada agregada exitosamente.</div>";
-                } else {
-                    echo "<div class='alert alert-danger' role='alert'>Error al agregar la camada: " . $conn->error . "</div>";
-                }
-            }
-            $conn->close();
-        ?>
+    <form action="agregarcam.php" method="post">
 
         <div class="form-group">
             <label for="arete">Arete:</label>
@@ -95,10 +103,7 @@ include("includes/conexion.php");
             <input type="hidden" name="id_fase" value="2"> <!-- Fase por defecto es 2 -->
         </div>
 
-        <div class="d-flex justify-content-between mt-4">
-            <button type="submit" class="btn btn-primary">Agregar Camada</button>
-            <a href="animales.php" class="btn btn-warning">Volver</a>
-        </div>
+        <button type="submit" class="btn btn-primary">Agregar Camada</button>
     </form>
 </div>
 
