@@ -37,6 +37,7 @@ $sql = "SELECT
             arete,
             cantidad,
             fechanaci,
+            id_fase,
             TIMESTAMPDIFF(MONTH, fechanaci, CURDATE()) AS meses,
             TIMESTAMPDIFF(DAY, ADDDATE(fechanaci, INTERVAL TIMESTAMPDIFF(MONTH, fechanaci, CURDATE()) MONTH), CURDATE()) AS dias
         FROM Camadas
@@ -45,7 +46,14 @@ $sql = "SELECT
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $edad_meses = $row['meses'];
-    $edad_dias = $row['dias'];    ?>
+    $edad_dias = $row['dias'];    
+
+    $sql_fase = "SELECT fase FROM Fases WHERE id_fase = " . $row['id_fase'];
+    $fase_result = $conn->query($sql_fase);
+    $fase_row = $fase_result->fetch_assoc();
+    $nombre_fase = $fase_row['fase'];    
+    ?>
+
     <div class="container mt-5">
         <h2>Información de la Camada</h2>
         <table class="table">            
@@ -65,14 +73,18 @@ if ($result->num_rows > 0) {
                 <th>Edad</th>
                 <td><?php echo $edad_meses . " mes y " . $edad_dias . " días"; ?></td>
             </tr>
-
+            <tr>
+                <th>Fase</th>
+                <td><?php echo $nombre_fase; ?></td>
+            </tr>
         </table>
     </div>
     <?php
 } else {
     echo "<div class='container mt-5'><p>No se encontró información para la camada seleccionada.</p></div>";
 }
-//agregar si ya tienen las dosis de hierro y bycox
+
+// Cerrar conexión
 $conn->close();
 ?>
 
