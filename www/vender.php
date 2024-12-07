@@ -1,3 +1,6 @@
+<?php
+include("includes/header.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,9 +11,6 @@
 </head>
 <body>
 
-<?php
-include("includes/header.php");
-?>
 
 function obtenerOpcionesLotes() {
     $conexion = new Conexion();
