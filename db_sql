@@ -8,8 +8,10 @@ CREATE TABLE Corrales (
 CREATE TABLE Alimentos (
     id_alimento INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
-    cantidad INT NOT NULL
+    cantidad INT NOT NULL,
+    total INT NOT NULL DEFAULT 0;
 );
+
 
 -- Tabla para Medicamentos
 CREATE TABLE Medicamentos (
@@ -30,10 +32,8 @@ CREATE TABLE Fases (
 CREATE TABLE DetalleDieta (
     id_detalle int PRIMARY KEY AUTO_INCREMENT,
     id_fase int NOT NULL,
-    id_alimento int NOT NULL,
     CantidadRequerida decimal(10,2) NOT NULL,
     FOREIGN KEY (id_fase) REFERENCES Fases(id_fase),
-    FOREIGN KEY (id_alimento) REFERENCES Alimentos(id_alimento)
 );
 
 -- Tabla para Animales
@@ -114,3 +114,46 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER calcular_total
+BEFORE INSERT ON Alimentos
+FOR EACH ROW
+BEGIN
+    SET NEW.total = NEW.cantidad * 20;
+END;
+//
+
+CREATE TRIGGER actualizar_total
+BEFORE UPDATE ON Alimentos
+FOR EACH ROW
+BEGIN
+    SET NEW.total = NEW.cantidad * 20;
+END;
+//
+
+DELIMITER ;
+
+
+/////////////
+CREATE TABLE DetalleDieta (
+    id_detalle int PRIMARY KEY AUTO_INCREMENT,
+    id_fase int NOT NULL,
+    CantidadRequerida decimal(10,2) NOT NULL,
+    FOREIGN KEY (id_fase) REFERENCES Fases(id_fase),
+);
+
+CREATE TABLE Ventas (
+    id_venta INT AUTO_INCREMENT PRIMARY KEY,
+    id_camada INT NOT NULL,
+    fechaventa DATE NOT NULL,
+    dias_totales INT NOT NULL,
+    costo_iniciacion DECIMAL(10, 2) NOT NULL,
+    costo_premium DECIMAL(10, 2) NOT NULL,
+    gastos_extras DECIMAL(10, 2) DEFAULT 0,
+    total DECIMAL(10, 2) NOT NULL
+);
+
+
+
