@@ -1,3 +1,6 @@
+<?php
+include("includes/header.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +12,8 @@
 </head>
 <body>
 
-<?php
-include("includes/header.php");
 
+<?php
 // se obtiene el ID de la camada desde la pagina 
 $id_camada = isset($_GET['id']) ? $_GET['id'] : 0;
 

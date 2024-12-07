@@ -1,3 +1,6 @@
+<?php
+include("includes/header.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +11,7 @@
 </head>
 <body>
 
-<?php
-include("includes/header.php");
-?>
+
 
 <div class="container mt-5">
     <h2>Listado de Camadas</h2>

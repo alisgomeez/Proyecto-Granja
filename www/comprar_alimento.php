@@ -13,16 +13,7 @@ include("includes/header.php");
 <body>
 
 <?php
-    $servername = "database";  
-    $username = "root";        
-    $password = "root";        
-    $dbname = "Granja";        
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
+include("includes/conexion.php");
 ?>
 
 <div class="container mt-5">
@@ -98,6 +89,5 @@ include("includes/header.php");
 </html>
 
 <?php
-// Cerrar la conexión después de la operación
 $conn->close();
 ?>

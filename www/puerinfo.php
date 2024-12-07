@@ -1,3 +1,7 @@
+<?php
+include("includes/header.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +11,6 @@
     <title>Mostrar Lotes</title>
 </head>
 <body>
-
-<?php
-include("includes/header.php");
-?>
 
 <div class="container mt-5">
     <h2>Listado de Madres</h2>
